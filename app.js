@@ -18,7 +18,7 @@ app.get('/', function(req, res){
 
 
 var questions = require('./questions/question-set-1');
-var webhookURL = 'https://hooks.slack.com/services/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';
+var webhookURL = 'https://hooks.slack.com/services/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';
 
 
 class Game {
