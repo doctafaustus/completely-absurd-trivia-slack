@@ -22,44 +22,56 @@ app.post('/send-me-buttons', urlencodedParser, function(req, res) {
 
 	res.status(200).end();
   var responseURL = req.body.response_url;
-    if (req.body.token !== 'cO4xREzAYlC5Om1axiIUl0Ml') {
-       res.status(403).end('Access forbidden');
-    } else {
-        var message = {
-            "text": "This is your first interactive message",
-            "attachments": [
-                {
-                    "text": "Building buttons is easy right?",
-                    "fallback": "Shame... buttons aren't supported in this land",
-                    "callback_id": "button_tutorial",
-                    "color": "#3AA3E3",
-                    "attachment_type": "default",
-                    "actions": [
-                        {
-                            "name": "yes",
-                            "text": "yes",
-                            "type": "button",
-                            "value": "yes"
-                        },
-                        {
-                            "name": "no",
-                            "text": "no",
-                            "type": "button",
-                            "value": "no"
-                        },
-                        {
-                            "name": "maybe",
-                            "text": "maybe",
-                            "type": "button",
-                            "value": "maybe",
-                            "style": "danger"
-                        }
-                    ]
-                }
-            ]
-        }
-        sendMessageToSlackResponseURL(responseURL, message)
-    }
+  if (req.body.token !== 'cO4xREzAYlC5Om1axiIUl0Ml') {
+    res.status(403).end('Access forbidden');
+  } else {
+    var message = {
+      'text': 'This is your first interactive message',
+      'attachments': [
+        {
+					'text': 'Building buttons is easy right?',
+					'fallback': 'Shame... buttons aren\'t supported in this land',
+					'callback_id': 'button_tutorial',
+					'color': '#3AA3E3',
+					'attachment_type': 'default',
+					'actions': [
+						{
+							'name': 'yes',
+							'text': 'yes',
+							"type": 'button',
+							'value': 'yes'
+						},
+						{
+							'name': 'no',
+							'text': 'no',
+							'type': 'button',
+							'value': 'no'
+						},
+						{
+							'name': 'maybe',
+							'text': 'maybe',
+							'type': 'button',
+							'value': 'maybe',
+							'style': 'danger'
+						}
+					]
+				}
+			]
+		};
+
+    sendMessageToSlackResponseURL(responseURL, message)
+  }
+});
+
+app.post('/slack/actions', urlencodedParser, function(req, res) {
+  res.status(200).end();
+  var actionJSONPayload = JSON.parse(req.body.payload);
+  var message = {
+    'text': actionJSONPayload.user.name + ' clicked: ' +actionJSONPayload.actions[0].name,
+      'replace_original': false
+  }
+
+  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
 });
 
 
@@ -69,18 +81,17 @@ app.listen(process.env.PORT || 3000, function() {
 
 
 
-function sendMessageToSlackResponseURL(responseURL, JSONmessage){
-    var postOptions = {
-        uri: responseURL,
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        json: JSONmessage
-    }
-    request(postOptions, (error, response, body) => {
-        if (error){
-            // handle errors as you see fit
-        }
-    })
+function sendMessageToSlackResponseURL(responseURL, JSONmessage) {
+	var postOptions = {
+		uri: responseURL,
+		method: 'POST',
+		headers: {
+			'Content-type': 'application/json'
+		},
+		json: JSONmessage
+	};
+
+	request(postOptions, function(error, response, body) {
+		if (error) throw error;
+	});
 }
