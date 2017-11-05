@@ -63,7 +63,7 @@ app.post('/send-me-buttons', urlencodedParser, function(req, res) {
   }
 });
 
-app.post('/actions', urlencodedParser, function(req, res) {
+app.post('/slack/actions', urlencodedParser, function(req, res) {
   res.status(200).end();
   var actionJSONPayload = JSON.parse(req.body.payload);
   var message = {
