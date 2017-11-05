@@ -12,66 +12,147 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 
 app.get('/', function(req, res){
-  	console.log('test!');
-  	res.sendStatus(200);
+  console.log('test!');
+  res.sendStatus(200);
 });
 
 
-app.post('/send-me-buttons', urlencodedParser, function(req, res) {
-	console.log('hello hello hello');
+var questions = require('./questions/question-set-1');
+var webhookURL = 'https://hooks.slack.com/services/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';
 
+
+class Game {
+	constructor() {
+		this.gameNum = Math.random().toString().substr(-6);
+		this.users = [];
+		this.currentQuestion = 0;
+		this.stopped = false;
+	}
+}
+
+
+class User {
+	constructor(user) {
+		this.name = user;
+		this.score = 0;
+		this.answer = null;
+		this.wasCorrect = false;
+		this.answerName = 'no answer';
+	}
+}
+
+
+let game;
+
+app.post('/new-trivia-game', urlencodedParser, function(req, res) {
+	console.log('/new-trivia-game');
+	game = new Game();
+
+	var message = {
+		'attachments': [
+	    {
+				'text': `A new game has been created! (#${game.gameNum})\nWho would like to play?`,
+				'callback_id': 'join_game',
+				'color': '#2ea664',
+				'attachment_type': 'default',
+				'actions': [
+					{
+						'name': 'me',
+						'text': 'Me!',
+						'type': 'button',
+						'value': 'me',
+						'style': 'primary'
+					}
+				]
+			}
+		]
+	};
+
+  sendMessageToSlack(webhookURL, message);
+});
+
+app.post('/stop-trivia-game', urlencodedParser, function(req, res) {
+	console.log('/stop-trivia-game');
 	res.status(200).end();
-  var responseURL = req.body.response_url;
-  if (req.body.token !== 'cO4xREzAYlC5Om1axiIUl0Ml') {
-    res.status(403).end('Access forbidden');
-  } else {
-    var message = {
-      'text': 'This is your first interactive message',
-      'attachments': [
-        {
-					'text': 'Building buttons is easy right?',
-					'fallback': 'Shame... buttons aren\'t supported in this land',
-					'callback_id': 'button_tutorial',
-					'color': '#3AA3E3',
-					'attachment_type': 'default',
-					'actions': [
-						{
-							'name': 'yes',
-							'text': 'yes',
-							"type": 'button',
-							'value': 'yes'
-						},
-						{
-							'name': 'no',
-							'text': 'no',
-							'type': 'button',
-							'value': 'no'
-						},
-						{
-							'name': 'maybe',
-							'text': 'maybe',
-							'type': 'button',
-							'value': 'maybe',
-							'style': 'danger'
-						}
-					]
-				}
-			]
-		};
-
-    sendMessageToSlackResponseURL(responseURL, message)
-  }
+	if (game) {
+		sendMessageToSlack(webhookURL, { text: `Game #${game.gameNum} cancelled by admin` });
+		game.stopped = true;
+	}
 });
+
+
+app.post('/start-trivia-game', urlencodedParser, function(req, res) {
+	console.log('/start-game');
+
+	if (!game || !game.users || !game.users.length || game.gameEnded) {
+		return sendMessageToSlack(webhookURL, { text: 'Users must join first before starting game' });
+	}
+
+
+	var list = game.users.map(user => {
+		return `> *${user.name}*`;
+	});
+	list = list.join('\n');
+
+
+	var message = {
+		'attachments': [
+			{
+				'title': 'Players:',
+				'pretext': 'All set! Game starts in 5 seconds.',
+				'color': '#0086b3',
+				'text': list,
+				'mrkdwn_in': [
+					'text',
+					'pretext'
+				]
+			}
+		]
+	};
+
+	sendMessageToSlack(webhookURL, message);
+
+	setTimeout(sendQuestion, 3000);
+
+
+});
+
 
 app.post('/actions', urlencodedParser, function(req, res) {
+	console.log('/actions');
   res.status(200).end();
   var actionJSONPayload = JSON.parse(req.body.payload);
-  var message = {
-    'text': actionJSONPayload.user.name + ' clicked: ' +actionJSONPayload.actions[0].name,
-      'replace_original': false
+
+  if (actionJSONPayload.callback_id === 'join_game') {
+
+  	if (getUser(actionJSONPayload.user.name)) {
+  		return console.log('User already registered')
+  	}
+
+  	var message = {
+  		text: `_${actionJSONPayload.user.name} is in!_`
+  	};
+  	registerUser(actionJSONPayload.user.name);
+  	console.log(game);
+		sendMessageToSlack(webhookURL, message);
   }
 
-  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
+
+  if (actionJSONPayload.callback_id === 'question_guess') {
+
+  	var user = getUser(actionJSONPayload.user.name);
+  	if (!user || user.answer) return;
+  	user.answer = actionJSONPayload.actions[0].value;
+  	user.answerName = actionJSONPayload.actions[0].name;
+
+  	var message = {
+  		text: `_You answered *${actionJSONPayload.actions[0].name}*._`,
+  		replace_original: false,
+  		response_type: 'ephemeral'
+  	};
+  	sendMessageToSlack(actionJSONPayload.response_url, message);
+  }
+  
 });
 
 
@@ -81,7 +162,7 @@ app.listen(process.env.PORT || 3000, function() {
 
 
 
-function sendMessageToSlackResponseURL(responseURL, JSONmessage) {
+function sendMessageToSlack(responseURL, JSONmessage) {
 	var postOptions = {
 		uri: responseURL,
 		method: 'POST',
@@ -94,4 +175,156 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage) {
 	request(postOptions, function(error, response, body) {
 		if (error) throw error;
 	});
+}
+
+
+function registerUser(username) {
+	var user = new User(username);
+	game.users.push(user);
+}
+
+
+function sendQuestion() {
+	if (game.stopped) return;
+
+	var questionObj = questions[game.currentQuestion];
+
+    var message = {
+      'attachments': [
+        {
+					'text': `${game.currentQuestion + 1}/${questions.length}: ${questionObj.question}`,
+					'callback_id': 'question_guess',
+					'color': '#fd00af',
+					'attachment_type': 'default',
+					'actions': [
+						{
+							'name': questionObj.a,
+							'text': questionObj.a,
+							'type': 'button',
+							'value': 'a'
+						},
+						{
+							'name': questionObj.b,
+							'text': questionObj.b,
+							'type': 'button',
+							'value': 'b'
+						},
+						{
+							'name': questionObj.c,
+							'text': questionObj.c,
+							'type': 'button',
+							'value': 'c'
+						},
+						{
+							'name': questionObj.d,
+							'text': questionObj.d,
+							'type': 'button',
+							'value': 'd'
+						}
+					]
+				}
+			]
+		};
+
+	sendMessageToSlack(webhookURL, message);
+
+	setTimeout(evaluateAnswers, 10000);
+
+}
+
+
+
+function evaluateAnswers() {
+	if (game.stopped) return;
+
+	var correctAnswer = questions[game.currentQuestion].answer;
+	var correctAnswerText = questions[game.currentQuestion][correctAnswer];
+	game.users.forEach(user => {
+		if (user.answer === correctAnswer) {
+			user.wasCorrect = true;
+			user.score++;
+		}
+	});
+
+	game.currentQuestion++;
+
+	postQuestionResults(correctAnswerText);
+
+}
+
+
+function getUser(name) {
+  return game.users.filter(function(v) {
+    return v.name === name;
+  })[0];
+}
+
+
+function postQuestionResults(correctAnswer) {
+
+	var gameEnded = (game.currentQuestion === questions.length) ? true : false;
+
+
+	var pretext;
+	var correctUsers = [];
+	game.users.forEach(user => {
+		if (user.wasCorrect) {
+			correctUsers.push(user.name);
+		}
+	});
+
+	if (correctUsers.length) {
+		pretext = `${correctUsers.join(', ')} got it right!`;
+	} else {
+		pretext = `No one got it right. You all suck.`;
+	}
+
+	if (!gameEnded) {
+		pretext += ' _Next question in 7 seconds..._';
+	}
+
+	var title = (!gameEnded) ? 'Leaderboard:' : 'GAME ENDED! - FINAL RESULTS:';
+
+
+	// Sort by score
+	game.users.sort(function(a, b) {
+		return b.score - a.score;
+	});
+
+	
+	var list = game.users.map(user => {
+		var guessedAnswer = user.answerName;
+
+		// Clear out results
+		user.wasCorrect = false;
+		user.answer = null;
+		user.answerName = 'no answer';
+		return `> *${user.score}* ${user.name} (${guessedAnswer})`;
+	});
+	list = list.join('\n');
+
+	var message = {
+		'attachments': [
+			{
+				'title': title,
+				'pretext': `*ANSWER: ${correctAnswer}* | ${pretext}`,
+				'color': '#0086b3',
+				'text': list,
+				'mrkdwn_in': [
+					'text',
+					'pretext'
+				]
+			}
+		]
+	};
+
+
+	sendMessageToSlack(webhookURL, message);
+
+	if (!gameEnded) {
+		setTimeout(sendQuestion, 7000);
+	} else {
+		game.gameEnded = true;
+	}
+	
 }
