@@ -112,7 +112,7 @@ app.post('/start-trivia-game', urlencodedParser, function(req, res) {
 
 	sendMessageToSlack(webhookURL, message);
 
-	setTimeout(sendQuestion, 3000);
+	setTimeout(sendQuestion, 5000);
 
 
 });
