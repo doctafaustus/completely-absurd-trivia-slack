@@ -46,6 +46,7 @@ let game;
 
 app.post('/new-trivia-game', urlencodedParser, function(req, res) {
 	console.log('/new-trivia-game');
+	res.status(200).end();
 	game = new Game();
 
 	var message = {
@@ -83,6 +84,7 @@ app.post('/stop-trivia-game', urlencodedParser, function(req, res) {
 
 app.post('/start-trivia-game', urlencodedParser, function(req, res) {
 	console.log('/start-game');
+	res.status(200).end();
 
 	if (!game || !game.users || !game.users.length || game.gameEnded) {
 		return sendMessageToSlack(webhookURL, { text: 'Users must join first before starting game' });
