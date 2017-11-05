@@ -192,7 +192,7 @@ function sendQuestion() {
     var message = {
       'attachments': [
         {
-					'text': `*${game.currentQuestion + 1}/${questions.length}*: ${questionObj.question}`,
+					'text': `${game.currentQuestion + 1}/${questions.length}: ${questionObj.question}`,
 					'callback_id': 'question_guess',
 					'color': '#fd00af',
 					'attachment_type': 'default',
