@@ -17,7 +17,7 @@ app.get('/', function(req, res){
 });
 
 
-var questions = require('./questions/question-set-1');
+var questions = require('./questions/question-set-2');
 var webhookURL = 'https://hooks.slack.com/services/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';
 
 
