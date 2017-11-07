@@ -162,7 +162,9 @@ app.post('/actions', urlencodedParser, function(req, res) {
 
   if (actionJSONPayload.callback_id === 'question_guess') {
   	var user = getUser(actionJSONPayload.user.name);
-  	if (!user || user.answer) return;
+  	if (!user || user.answer) {
+      return sendMessageToSlack(actionJSONPayload.response_url, { text: 'idk'});
+  	};
 
   	// If answer is not contained in current question then do nothing
   	var currentQuestion = questions[game.currentQuestion];
