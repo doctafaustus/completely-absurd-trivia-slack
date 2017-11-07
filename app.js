@@ -176,7 +176,7 @@ app.post('/actions', urlencodedParser, function(req, res) {
   	});
 
 
-  	if (Object.values(propValues).indexOf(usersAnswer) === -1) {
+  	if (propValues.indexOf(usersAnswer) === -1) {
   		console.log('Oops! something went wrong.');
   		return sendMessageToSlack(actionJSONPayload.response_url, { text: 'Oops! Something went wrong.', replace_original: false,
   		response_type: 'ephemeral' });
