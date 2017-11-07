@@ -18,7 +18,7 @@ app.get('/', function(req, res){
 
 
 var isProduction = true;
-var webhookURL = (isProduction) ? 'https://hooks.slack.com/services/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' : 'https://hooks.slack.com/services/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';
+var webhookURL = (isProduction) ? 'https://hooks.slack.com/services/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' : 'https://hooks.slack.com/services/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';
 
 
 
