@@ -22,7 +22,7 @@ var webhookURL = (isProduction) ? 'https://hooks.slack.com/services/T02A4DYBJ/B7
 
 
 
-var questions = require('./questions/question-set-1');
+var questions = require('./questions/question-set-3');
 
 
 class Game {
