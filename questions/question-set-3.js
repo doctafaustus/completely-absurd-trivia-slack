@@ -16,7 +16,7 @@ module.exports = [
     answer: 'c'
   },
   {
-    question: 'What was the name of the U.S. mail service that started in 1860, ', 
+    question: 'What was the name of the U.S. mail service that started in 1860?', 
     a: 'Pony Express', 
     b: 'Rider mail',
     c: 'Fast mail',
