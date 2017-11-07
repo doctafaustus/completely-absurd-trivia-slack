@@ -162,15 +162,21 @@ app.post('/actions', urlencodedParser, function(req, res) {
 
   if (actionJSONPayload.callback_id === 'question_guess') {
   	var user = getUser(actionJSONPayload.user.name);
-  	if (!user || user.answer) {
-      return sendMessageToSlack(actionJSONPayload.response_url, { text: 'idk'});
-  	};
+  	if (!user || user.answer) return;
 
   	// If answer is not contained in current question then do nothing
   	var currentQuestion = questions[game.currentQuestion];
   	var usersAnswer = actionJSONPayload.actions[0].name;
 
-  	if (Object.values(currentQuestion).indexOf(usersAnswer) === -1) {
+
+  	var propValues = [];
+  	Object.keys(currentQuestion).forEach(function(key) {
+  		var val = currentQuestion[key];
+  		propValues.push(val);
+  	});
+
+
+  	if (Object.values(propValues).indexOf(usersAnswer) === -1) {
   		console.log('Oops! something went wrong.');
   		return sendMessageToSlack(actionJSONPayload.response_url, { text: 'Oops! Something went wrong.', replace_original: false,
   		response_type: 'ephemeral' });
@@ -184,9 +190,6 @@ app.post('/actions', urlencodedParser, function(req, res) {
   		replace_original: false,
   		response_type: 'ephemeral'
   	};
-
-		sendMessageToSlack(webhookURL, {text: 'test'});
-
   	sendMessageToSlack(actionJSONPayload.response_url, message);
   }
   
