@@ -184,6 +184,9 @@ app.post('/actions', urlencodedParser, function(req, res) {
   		replace_original: false,
   		response_type: 'ephemeral'
   	};
+
+		sendMessageToSlack(webhookURL, {text: 'test'});
+
   	sendMessageToSlack(actionJSONPayload.response_url, message);
   }
   
