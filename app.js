@@ -17,8 +17,12 @@ app.get('/', function(req, res){
 });
 
 
-var questions = require('./questions/question-set-2');
-var webhookURL = 'https://hooks.slack.com/services/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';
+var isProduction = true;
+var webhookURL = (isProduction) ? 'https://hooks.slack.com/services/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' : 'https://hooks.slack.com/services/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';
+
+
+
+var questions = require('./questions/question-set-1');
 
 
 class Game {
@@ -44,11 +48,27 @@ class User {
 
 let game;
 
-app.post('/new-trivia-game', urlencodedParser, function(req, res) {
+
+function checkAdmin(req, res, next) {
+	if (req.body.user_name.indexOf('bill') === -1) {
+		res.status(200).end();
+  	var message = {
+  		text: 'Ah ah ah! Only the admin can do that!',
+  		replace_original: false,
+  		response_type: 'ephemeral'
+  	};
+  	sendMessageToSlack(req.body.response_url, message);
+	} else {
+		next();
+	}
+}	
+
+
+app.post('/new-trivia-game', urlencodedParser, checkAdmin, function(req, res) {
 	console.log('/new-trivia-game');
 	res.status(200).end();
-	game = new Game();
 
+	game = new Game();
 	var message = {
 		'attachments': [
 	    {
@@ -72,7 +92,7 @@ app.post('/new-trivia-game', urlencodedParser, function(req, res) {
   sendMessageToSlack(webhookURL, message);
 });
 
-app.post('/stop-trivia-game', urlencodedParser, function(req, res) {
+app.post('/stop-trivia-game', urlencodedParser, checkAdmin, function(req, res) {
 	console.log('/stop-trivia-game');
 	res.status(200).end();
 	if (game) {
@@ -82,7 +102,7 @@ app.post('/stop-trivia-game', urlencodedParser, function(req, res) {
 });
 
 
-app.post('/start-trivia-game', urlencodedParser, function(req, res) {
+app.post('/start-trivia-game', urlencodedParser, checkAdmin, function(req, res) {
 	console.log('/start-game');
 	res.status(200).end();
 
@@ -101,7 +121,7 @@ app.post('/start-trivia-game', urlencodedParser, function(req, res) {
 		'attachments': [
 			{
 				'title': 'Players:',
-				'pretext': 'All set! Game starts in 5 seconds.',
+				'pretext': 'All set! _Game starts in 5 seconds..._',
 				'color': '#0086b3',
 				'text': list,
 				'mrkdwn_in': [
@@ -141,9 +161,19 @@ app.post('/actions', urlencodedParser, function(req, res) {
 
 
   if (actionJSONPayload.callback_id === 'question_guess') {
-
   	var user = getUser(actionJSONPayload.user.name);
   	if (!user || user.answer) return;
+
+  	// If answer is not contained in current question then do nothing
+  	var currentQuestion = questions[game.currentQuestion];
+  	var usersAnswer = actionJSONPayload.actions[0].name;
+
+  	if (Object.values(currentQuestion).indexOf(usersAnswer) === -1) {
+  		console.log('Oops! something went wrong.');
+  		return sendMessageToSlack(actionJSONPayload.response_url, { text: 'Oops! Something went wrong.', replace_original: false,
+  		response_type: 'ephemeral' });
+  	}
+
   	user.answer = actionJSONPayload.actions[0].value;
   	user.answerName = actionJSONPayload.actions[0].name;
 
@@ -230,7 +260,7 @@ function sendQuestion() {
 
 	sendMessageToSlack(webhookURL, message);
 
-	setTimeout(evaluateAnswers, 9000);
+	setTimeout(evaluateAnswers, 10000);
 
 }
 
@@ -267,7 +297,7 @@ function postQuestionResults(correctAnswer) {
 	var gameEnded = (game.currentQuestion === questions.length) ? true : false;
 
 
-	var pretext;
+	var gotItRight;
 	var correctUsers = [];
 	game.users.forEach(user => {
 		if (user.wasCorrect) {
@@ -276,17 +306,16 @@ function postQuestionResults(correctAnswer) {
 	});
 
 	if (correctUsers.length) {
-		pretext = `${correctUsers.join(', ')} got it right!`;
+		gotItRight = `${correctUsers.join(', ')} got it right!`;
 	} else {
-		pretext = `No one got it right. You all suck.`;
+		gotItRight = `No one got it right. You all suck.`;
 	}
 
 	if (!gameEnded) {
-		pretext += ' _Next question in 7 seconds..._';
+		gotItRight += ' _Next question in 8 seconds..._';
 	}
 
-	var title = (!gameEnded) ? 'Leaderboard:' : 'GAME ENDED! - FINAL RESULTS:';
-
+	var title = (!gameEnded) ? '>*Leaderboard:*' : '>*GAME ENDED! - FINAL RESULTS:*';
 
 	// Sort by score
 	game.users.sort(function(a, b) {
@@ -296,35 +325,26 @@ function postQuestionResults(correctAnswer) {
 	
 	var list = game.users.map(user => {
 		var guessedAnswer = user.answerName;
-
-		// Clear out results
-		user.wasCorrect = false;
-		user.answer = null;
-		user.answerName = 'no answer';
-		return `> *${user.score}* ${user.name} (${guessedAnswer})`;
+		return `     *${user.score}* ${user.name} (${guessedAnswer})`;
 	});
 	list = list.join('\n');
-
+ 
 	var message = {
-		'attachments': [
-			{
-				'title': title,
-				'pretext': `*ANSWER: ${correctAnswer}* | ${pretext}`,
-				'color': '#0086b3',
-				'text': list,
-				'mrkdwn_in': [
-					'text',
-					'pretext'
-				]
-			}
-		]
-	};
-
+		text: `*Answer:* \`${correctAnswer}\`\n${gotItRight}\n${title}\n${list}`,
+	}
 
 	sendMessageToSlack(webhookURL, message);
 
+	// Clear out results
+	game.users.forEach(user => {
+		user.wasCorrect = false;
+		user.answer = null;
+		user.answerName = 'no answer';
+	});
+
+
 	if (!gameEnded) {
-		setTimeout(sendQuestion, 7000);
+		setTimeout(sendQuestion, 8000);
 	} else {
 		game.gameEnded = true;
 	}
