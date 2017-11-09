@@ -24,9 +24,17 @@ var prodRealURL = 'https://hooks.slack.com/services/T02A4DYBJ/B7WHHJC05/2lPlwdnh
 
 var webhookURL = prodRealURL;
 
-
-
 var questions = require('./questions/question-set-6');
+
+
+// Trivia database API
+// $.ajax({
+// 	type: 'GET',
+// 	url: 'https://opentdb.com/api.php?amount=10',
+// 	success(data) {
+// 		console.log(data);
+// 	}
+// })
 
 
 class Game {
