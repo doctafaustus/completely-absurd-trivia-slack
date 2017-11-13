@@ -32,7 +32,7 @@ module.exports = [
     answer: 'c'
   },
   {
-    question: 'what is the capital of Hungary?',
+    question: 'What is the capital of Hungary?',
     a: 'Budapest',
     b: 'Vienna',
     c: 'Prague',
@@ -56,7 +56,7 @@ module.exports = [
     answer: 'a'
   },
   {
-    question: 'In what country is Lego headquartered?',
+    question: 'What country is Lego headquartered in?',
     a: 'Belgium',
     b: 'USA',
     c: 'Denmark',
