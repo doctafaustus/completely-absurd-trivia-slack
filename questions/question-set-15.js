@@ -1,6 +1,6 @@
 module.exports = [
   {
-    question: 'In the body luteinizing hormone is produced by what gland(s)?', 
+    question: 'In the body, luteinizing hormone is produced by what gland(s)?', 
     a: 'Pituitary ',
     b: 'Thyroid',
     c: 'Adrenal ',
@@ -26,7 +26,7 @@ module.exports = [
   {
     question: 'Which of the following tools would a firefighter be most likely to use?', 
     a: 'Jaws of Life',
-    b: 'Hurst',
+    b: 'Mallet',
     c: 'Dremel',
     d: 'Coping Saw',
     answer: 'a'
