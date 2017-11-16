@@ -48,7 +48,7 @@ module.exports = [
     answer: 'a'
   },
   {
-    question: 'Led Zeppelin wrote songs about the works of which author?', 
+    question: 'Led Zeppelin wrote songs about the works of which person?', 
     a: 'Nietzsche',
     b: 'Poe',
     c: 'Tolkein',
