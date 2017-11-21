@@ -48,7 +48,7 @@ module.exports = [
     answer: 'd'
   },
   {
-    question: 'Which musician has a theme park named after him/her?', 
+    question: 'Which musician has a theme park named after him/her?',
     a: 'Bob Marley',
     b: 'Dolly Parton',
     c: 'Bob Dylan',
@@ -56,7 +56,7 @@ module.exports = [
     answer: 'b'
   },
   {
-    question: 'What serial killer was known "The Killer Clown"?', 
+    question: 'What serial killer was known as "The Killer Clown"?', 
     a: 'John Wayne Gacy',
     b: 'Ted Bundy',
     c: 'Jeffrey Dahmer',
@@ -64,7 +64,7 @@ module.exports = [
     answer: 'a'
   },
   {
-    question: 'What is Venus\'s Greek counterpart?', 
+    question: 'Who is the Greek counterpart of the goddess Venus?', 
     a: 'Aphrodite',
     b: 'Brizo',
     c: 'Calypso',
