@@ -18,7 +18,7 @@ module.exports = [
   {
     question: 'How many slack emojis has ChelsB created?', 
     a: '31',
-    b: '71',
+    b: '72',
     c: '46',
     d: '53',
     answer: 'b'
