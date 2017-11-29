@@ -281,7 +281,7 @@ function sendQuestion() {
 
 	sendMessageToSlack(webhookURL, message);
 
-	setTimeout(evaluateAnswers, 11500);
+	setTimeout(evaluateAnswers, 13000);
 
 }
 
