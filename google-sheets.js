@@ -29,27 +29,51 @@ async.series([
       'return-empty': true
     }, function(err, cells) {
 
-      var userCellIndex = cells.findIndex(cell => cell.value === 'Jacob');
-      //console.log(userCellIndex);
+      var users = [
+        { name: 'Jacob' },
+        { name: 'Alex' },
+        { name: 'Rob' },
+        { name: 'John' },
+        { name: 'Bob' }
+      ];
 
-      var targetCell = cells[userCellIndex + 1];
-      //console.log(targetCell);
-
-      var targetCellValue = targetCell.value;
-
-      targetCell.value = ++targetCellValue;
-      targetCell.save(function() {
-        console.log('Saved!');
+      var namesToAdd = [];
+      var counter = 0;
+      users.forEach(({ name }) => {
+        var userCellIndex = cells.findIndex(cell => cell.value === name);
+        if (userCellIndex === -1) {
+          namesToAdd.push(name);
+        }
       });
- 
-      // This should propbably be it's own function to specify parameters
-      var lastCell = cells.find(cell => cell.value === '');
-      lastCell.value = 'I AM LAST!';
-      lastCell.save(function() {
-        console.log('Saved!');
-      })
-      console.log(lastCell);
 
+
+      if (namesToAdd.length) {
+        var firstColumnCells = cells.filter(cell => cell.batchId.indexOf('C1') > -1);
+        namesToAdd.forEach((name) => {
+          var lastCell = firstColumnCells.find(cell => cell.value === '');
+          lastCell.value = name;
+          lastCell.save(function() {
+            counter++;
+            if (counter === namesToAdd.length) {
+              updateWins();
+            }
+          });
+        });
+      } else {
+        updateWins();
+      }
+
+
+      function updateWins() {
+        users.forEach((user) => {
+          var userCellIndex = cells.findIndex(cell => cell.value === user.name);
+          var winsCell = cells[userCellIndex + 1];
+          var targetCellValue = winsCell.value;
+
+          winsCell.value = ++targetCellValue;
+          winsCell.save();
+        });
+      }
 
       step();
     });
