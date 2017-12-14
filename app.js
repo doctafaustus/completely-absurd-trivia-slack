@@ -22,7 +22,7 @@ var prodSecretURL = 'https://hooks.slack.com/services/T02A4DYBJ/B7XFY0207/eyjF0B
 var prodRealURL = 'https://hooks.slack.com/services/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';
 
 
-var webhookURL = prodRealURL;
+var webhookURL = prodSecretURL;
 
 var questions = require('./questions/question-set-jessica');
 
@@ -181,6 +181,9 @@ app.post('/actions', urlencodedParser, function(req, res) {
   	var currentQuestion = questions[game.currentQuestion];
   	var usersAnswer = actionJSONPayload.actions[0].name;
 
+
+    console.log('game.currentQuestion variable', game.currentQuestion);
+    console.log('currentQuestion variable:', currentQuestion);
 
   	var propValues = [];
   	Object.keys(currentQuestion).forEach(function(key) {
