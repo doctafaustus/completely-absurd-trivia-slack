@@ -16,7 +16,7 @@ module.exports = [
     answer: 'a'
   },
   {
-    question: 'What of the following is NOT a component of a toilet?', 
+    question: 'Which of the following is NOT a component of a toilet?', 
     a: 'Flapper',
     b: 'Float',
     c: 'Fill Valve',
@@ -24,7 +24,7 @@ module.exports = [
     answer: 'd'
   },
   {
-    question: 'What kind of creature was Gizmo from the move "Gremlims"?', 
+    question: 'What kind of creature was Gizmo from the movie "Gremlims"?', 
     a: 'Gelfling',
     b: 'Mogwai',
     c: 'Na\'vi',
