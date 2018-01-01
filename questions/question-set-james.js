@@ -28,7 +28,7 @@ module.exports = [
     a: 'C3 Presents',
     b: 'C3 Concerts',
     c: 'C3 Festivals',
-    d: 'Austin City Limits, LLC',
+    d: 'Austin City Limits LLC',
     answer: 'a'
   },
   {
@@ -41,7 +41,7 @@ module.exports = [
   },
   {
     question: 'According to the Austin Music Awards, who was the best Blues/Soul/Funk act of 2016-2017?', 
-    a: 'Gary Clark, Jr.',
+    a: 'Gary Clark Jr.',
     b: 'Alesia Lani',
     c: 'Peterson Brothers',
     d: 'Shiny Ribs',

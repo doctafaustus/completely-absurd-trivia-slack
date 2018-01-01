@@ -24,7 +24,7 @@ var prodRealURL = 'https://hooks.slack.com/services/T02A4DYBJ/B7WHHJC05/2lPlwdnh
 
 var webhookURL = devURL;
 
-var questions = require('./questions/question-set-adam');
+var questions = require('./questions/question-set-marfa');
 
 
 // Trivia database API
