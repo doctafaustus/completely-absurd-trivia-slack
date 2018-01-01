@@ -17,9 +17,10 @@ app.get('/', function(req, res){
 });
 
 
-var devURL = 'https://hooks.slack.com/services/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';
+var devURL = 'https://hooks.slack.com/services/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';
 var prodSecretURL = 'https://hooks.slack.com/services/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';
 var prodRealURL = 'https://hooks.slack.com/services/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';
+
 
 
 var webhookURL = devURL;
