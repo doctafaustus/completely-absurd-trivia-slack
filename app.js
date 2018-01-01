@@ -22,7 +22,7 @@ var prodSecretURL = 'https://hooks.slack.com/services/T02A4DYBJ/B7XFY0207/eyjF0B
 var prodRealURL = 'https://hooks.slack.com/services/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';
 
 
-var webhookURL = prodRealURL;
+var webhookURL = devURL;
 
 var questions = require('./questions/question-set-adam');
 
