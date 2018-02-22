@@ -1,7 +1,10 @@
 var express = require('express');
 var request = require('request');
 var bodyParser = require('body-parser');
+
+
 var getLeaderboad = require('./get-leaderboard');
+var updateLeaderboard = require('./update-leaderboard');
 
 
 var app = express();
@@ -383,6 +386,10 @@ function postQuestionResults(correctAnswer) {
 			text: `CONGRATULATIONS  ${winners.join(', ')}! :party-wizard:`
 		});
 
+		// Update leaderboard
+		updateLeaderboard(winners, function() {
+			console.log('Leaderboard updated!');
+		});
 	}
 	
 }
@@ -401,10 +408,6 @@ app.post('/leaderboard', urlencodedParser, checkAdmin, function(req, res) {
 		});
 
 		console.log(leaderboardMessage);
-		// sendMessageToSlack(webhookURL, {
-		// 	text: leaderboardMessage
-		// });
-
 		sendMessageToSlack(webhookURL, {
 			'attachments': [
 				{
