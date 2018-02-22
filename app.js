@@ -353,20 +353,28 @@ function postQuestionResults(correctAnswer) {
 		user.answerName = 'no answer';
 	});
 
+	// CHANGE!
+	gameEnded = true;
+
 	if (!gameEnded) {
 		setTimeout(sendQuestion, 8000);
 	} else {
 		game.gameEnded = true;
 
+		// Send party wizard
+		sendMessageToSlack(webhookURL, {
+			text: ':smile: Test';
+		})
+
 		getLeaderboad(function(leaders) {
-			var leaderboardMessage = '*LEADERBOARD*\n';
+			var leaderboardMessage = '*All Time Leaders*\n';
 			leaders.forEach(leader => {
 				leaderboardMessage += `${leader.name} - ${leader.score} wins\n`;
 			});
 
 			console.log(leaderboardMessage);
 			sendMessageToSlack(webhookURL, {
-				test: leaderboardMessage
+				text: leaderboardMessage
 			});
 		});
 	}
