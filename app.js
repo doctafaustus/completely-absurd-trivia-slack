@@ -361,9 +361,20 @@ function postQuestionResults(correctAnswer) {
 	} else {
 		game.gameEnded = true;
 
+
+		var highestScore = game.users.reduce(function(accum, item) {
+		  if (item.score > accum) {
+		    return item.score
+		  } else {
+		     return accum;
+		  }
+		}, 0);
+
+		console.log('highestScore', highestScore);
+
 		// Send party wizard
 		sendMessageToSlack(webhookURL, {
-			text: ':smile: Test'
+			text: 'CONGRATULATIONS  ! :party-wizard:'
 		});
 
 		getLeaderboad(function(leaders) {
