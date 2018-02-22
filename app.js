@@ -395,16 +395,33 @@ app.post('/leaderboard', urlencodedParser, checkAdmin, function(req, res) {
 	res.status(200).end();
 
 	getLeaderboad(function(leaders) {
-		var leaderboardMessage = '*All Time Leaders*\n';
+		var leaderboardMessage = '';
 		leaders.forEach(leader => {
 			leaderboardMessage += `${leader.name} - ${leader.score} wins\n`;
 		});
 
 		console.log(leaderboardMessage);
+		// sendMessageToSlack(webhookURL, {
+		// 	text: leaderboardMessage
+		// });
+
 		sendMessageToSlack(webhookURL, {
-			text: leaderboardMessage
+				'attachments': [
+					{
+						// 'title': 'Players:',
+						'pretext': '*All Time Leaders* :trophy:\n',
+						'color': '#0086b3',
+						'text': leaderboardMessage,
+						'mrkdwn_in': ['text', 'pretext']
+					}
+				]
+			}
 		});
 	});
 
 });
+
+
+
+
 
