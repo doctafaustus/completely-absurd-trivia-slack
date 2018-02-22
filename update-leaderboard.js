@@ -73,6 +73,8 @@ function updateLeaderboard(winners, cb) {
 	          var winsCell = cells[userCellIndex + 1];
 	          var targetCellValue = winsCell.value;
 
+	          console.log('winsCell', winsCell);
+
 	          if (!targetCellValue) {
 	          	winsCell.value = 1;
 	          } else {
