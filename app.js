@@ -356,8 +356,6 @@ function postQuestionResults(correctAnswer) {
 		user.answerName = 'no answer';
 	});
 
-	// CHANGE!
-	gameEnded = true;
 
 	if (!gameEnded) {
 		setTimeout(sendQuestion, 8000);
@@ -411,7 +409,6 @@ app.post('/leaderboard', urlencodedParser, checkAdmin, function(req, res) {
 		sendMessageToSlack(webhookURL, {
 			'attachments': [
 				{
-					// 'title': 'Players:',
 					'pretext': '*All Time Leaders* :trophy:\n',
 					'color': '#0086b3',
 					'text': leaderboardMessage,
