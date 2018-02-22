@@ -27,9 +27,9 @@ var prodRealURL = 'https://hooks.slack.com/services/T02A4DYBJ/B7WHHJC05/2lPlwdnh
 
 
 
-var webhookURL = prodSecretURL;
+var webhookURL = prodRealURL;
 
-var questions = require('./questions/question-set-joshj');
+var questions = require('./questions/question-set-26');
 
 
 class Game {
@@ -367,7 +367,7 @@ function postQuestionResults(correctAnswer) {
 		  if (item.score > accum) {
 		    return item.score
 		  } else {
-		     return accum;
+		    return accum;
 		  }
 		}, 0);
 		console.log('highestScore', highestScore);
