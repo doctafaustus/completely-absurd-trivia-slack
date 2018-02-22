@@ -3,6 +3,10 @@ var request = require('request');
 var bodyParser = require('body-parser');
 
 
+var getLeaderboad = require('./get-leaderboard');
+var updateLeaderboard = require('./update-leaderboard');
+
+
 var app = express();
 app.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }));
 app.use(bodyParser.json({limit: '1mb'}));
@@ -25,18 +29,7 @@ var prodRealURL = 'https://hooks.slack.com/services/T02A4DYBJ/B7WHHJC05/2lPlwdnh
 
 var webhookURL = prodRealURL;
 
-var questions = require('./questions/question-set-joshj');
-
-
-// Trivia database API
-// $.ajax({
-// 	type: 'GET',
-// 	url: 'https://opentdb.com/api.php?amount=10',
-// 	success(data) {
-// 		console.log(data);
-// 	}
-// })
-
+var questions = require('./questions/question-set-26');
 
 
 class Game {
@@ -368,6 +361,69 @@ function postQuestionResults(correctAnswer) {
 		setTimeout(sendQuestion, 8000);
 	} else {
 		game.gameEnded = true;
+
+
+		var highestScore = game.users.reduce(function(accum, item) {
+		  if (item.score > accum) {
+		    return item.score
+		  } else {
+		    return accum;
+		  }
+		}, 0);
+		console.log('highestScore', highestScore);
+
+
+		var winners = game.users.filter(user => {
+		  return user.score === highestScore;
+		}).map(user => user.name);
+		console.log('winners', winners);
+		
+
+		// Send party wizard
+		setTimeout(function() {
+			sendMessageToSlack(webhookURL, {
+				text: `CONGRATULATIONS  ${winners.join(', ')}! :party-wizard:`
+			});
+		}, 3000);
+
+		// Update leaderboard
+		updateLeaderboard(winners, function() {
+			console.log('Leaderboard updated!');
+		});
 	}
 	
 }
+
+
+
+app.post('/leaderboard', urlencodedParser, checkAdmin, function(req, res) {
+
+	console.log('/leaderboard');
+	res.status(200).end();
+
+	getLeaderboad(function(leaders) {
+		var leaderboardMessage = '';
+		leaders.forEach(leader => {
+			leaderboardMessage += `${leader.name} - ${leader.score} wins\n`;
+		});
+
+		console.log(leaderboardMessage);
+		sendMessageToSlack(webhookURL, {
+			'attachments': [
+				{
+					'pretext': '*All Time Leaders* :trophy:\n',
+					'color': '#0086b3',
+					'text': leaderboardMessage,
+					'mrkdwn_in': ['text', 'pretext']
+				}
+			]
+		});
+
+	});
+
+});
+
+
+
+
+

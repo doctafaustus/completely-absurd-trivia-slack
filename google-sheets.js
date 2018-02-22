@@ -34,9 +34,12 @@ async.series([
         { name: 'Alex' },
         { name: 'Rob' },
         { name: 'John' },
-        { name: 'Bob' }
+        { name: 'Bob' },
+        { name: 'Yoshi' }
       ];
 
+
+      // Find users who are new
       var namesToAdd = [];
       var counter = 0;
       users.forEach(({ name }) => {
@@ -47,6 +50,7 @@ async.series([
       });
 
 
+      // Add new users to sheet
       if (namesToAdd.length) {
         var firstColumnCells = cells.filter(cell => cell.batchId.indexOf('C1') > -1);
         namesToAdd.forEach((name) => {
@@ -59,9 +63,12 @@ async.series([
             }
           });
         });
+
+      // Update user wins 
       } else {
         updateWins();
       }
+
 
 
       function updateWins() {

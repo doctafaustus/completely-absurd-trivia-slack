@@ -24,59 +24,59 @@ module.exports = [
     answer: 'd'
   },
   {
-    question: '', 
-    a: '',
-    b: '',
-    c: '',
-    d: '',
-    answer: ''
+    question: 'Who was Dikembe Mutombo?', 
+    a: 'A basketball player',
+    b: 'A painter',
+    c: 'A fashion designer',
+    d: 'An author',
+    answer: 'a'
   },
   {
-    question: '', 
-    a: '',
-    b: '',
-    c: '',
-    d: '',
-    answer: ''
+    question: 'Trinitron was a brand of what kind of product?', 
+    a: 'Stereos',
+    b: 'Shoes',
+    c: 'Televisions',
+    d: 'Washing Machines',
+    answer: 'c'
   },
   {
-    question: '', 
-    a: '',
-    b: '',
-    c: '',
-    d: '',
-    answer: ''
+    question: 'Who founded Walmart?', 
+    a: 'Henry Walton',
+    b: 'Walter Henry',
+    c: 'Sam Walton',
+    d: 'Walter Cronkite',
+    answer: 'c'
   },
   {
-    question: '', 
-    a: '',
-    b: '',
-    c: '',
-    d: '',
-    answer: ''
+    question: 'What is the fastest fish in the world?', 
+    a: 'Sailfish',
+    b: 'Mako Shark',
+    c: 'Racing Shark',
+    d: 'Swordfish',
+    answer: 'a'
   },
   {
-    question: '', 
-    a: '',
-    b: '',
-    c: '',
-    d: '',
-    answer: ''
+    question: 'What year was Windows XP released?', 
+    a: '1999',
+    b: '2000',
+    c: '2001',
+    d: '2003',
+    answer: 'c'
   },
   {
-    question: '', 
-    a: '',
-    b: '',
-    c: '',
-    d: '',
-    answer: ''
+    question: 'In 1984, Michael Jackson was severly injured filming a commercial for what company?', 
+    a: 'Nike',
+    b: 'Pepsi',
+    c: 'Burger King',
+    d: 'Sprite',
+    answer: 'b'
   },
   {
-    question: '', 
-    a: '',
-    b: '',
-    c: '',
-    d: '',
-    answer: ''
+    question: 'Where was the cuckoo clock first popularized?', 
+    a: 'Germany',
+    b: 'Sweden',
+    c: 'USA',
+    d: 'France',
+    answer: 'a'
   },
 ];
