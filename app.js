@@ -369,12 +369,18 @@ function postQuestionResults(correctAnswer) {
 		     return accum;
 		  }
 		}, 0);
-
 		console.log('highestScore', highestScore);
+
+
+		var winners = game.users.filter(user => {
+		  return user.score === highestScore;
+		}).map(user => user.name);
+		console.log('winners', winners);
+		
 
 		// Send party wizard
 		sendMessageToSlack(webhookURL, {
-			text: 'CONGRATULATIONS  ! :party-wizard:'
+			text: `CONGRATULATIONS  ${winners.join(', ')}! :party-wizard:`
 		});
 
 		getLeaderboad(function(leaders) {
