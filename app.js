@@ -363,8 +363,8 @@ function postQuestionResults(correctAnswer) {
 
 		// Send party wizard
 		sendMessageToSlack(webhookURL, {
-			text: ':smile: Test';
-		})
+			text: ':smile: Test'
+		});
 
 		getLeaderboad(function(leaders) {
 			var leaderboardMessage = '*All Time Leaders*\n';
