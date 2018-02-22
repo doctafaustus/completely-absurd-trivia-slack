@@ -380,9 +380,11 @@ function postQuestionResults(correctAnswer) {
 		
 
 		// Send party wizard
-		sendMessageToSlack(webhookURL, {
-			text: `CONGRATULATIONS  ${winners.join(', ')}! :party-wizard:`
-		});
+		setTimeout(function() {
+			sendMessageToSlack(webhookURL, {
+				text: `CONGRATULATIONS  ${winners.join(', ')}! :party-wizard:`
+			});
+		}, 3000);
 
 		// Update leaderboard
 		updateLeaderboard(winners, function() {

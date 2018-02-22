@@ -24,20 +24,20 @@ module.exports = [
     answer: 'd'
   },
   {
-    question: '', 
-    a: '',
-    b: '',
-    c: '',
-    d: '',
-    answer: ''
+    question: 'Who is Dikembe Mutombo?', 
+    a: 'A basketball player',
+    b: 'A painter',
+    c: 'A fashion designer',
+    d: 'An author',
+    answer: 'a'
   },
   {
-    question: '', 
-    a: '',
-    b: '',
-    c: '',
-    d: '',
-    answer: ''
+    question: 'Trinitron was a brand name of what product?', 
+    a: 'Stereos',
+    b: 'Shoes',
+    c: 'Televisions',
+    d: 'Washing Machines',
+    answer: 'c'
   },
   {
     question: '', 
