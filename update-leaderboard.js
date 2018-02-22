@@ -69,7 +69,7 @@ function updateLeaderboard(winners, cb) {
 
 	      function updateWins() {
 	        winners.forEach((user) => {
-	          var userCellIndex = cells.findIndex(cell => cell.value === user.name);
+	          var userCellIndex = cells.findIndex(cell => cell.value === user);
 	          var winsCell = cells[userCellIndex + 1];
 	          var targetCellValue = winsCell.value;
 
