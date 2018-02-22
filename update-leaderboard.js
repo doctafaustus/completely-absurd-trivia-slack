@@ -73,7 +73,12 @@ function updateLeaderboard(winners, cb) {
 	          var winsCell = cells[userCellIndex + 1];
 	          var targetCellValue = winsCell.value;
 
-	          winsCell.value = ++targetCellValue || 1;
+	          if (!targetCellValue) {
+	          	winsCell.value = 1;
+	          } else {
+	          	winsCell.value = ++targetCellValue;
+	          }
+	          
 	          winsCell.save();
 	        });
 	      }
