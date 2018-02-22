@@ -406,17 +406,17 @@ app.post('/leaderboard', urlencodedParser, checkAdmin, function(req, res) {
 		// });
 
 		sendMessageToSlack(webhookURL, {
-				'attachments': [
-					{
-						// 'title': 'Players:',
-						'pretext': '*All Time Leaders* :trophy:\n',
-						'color': '#0086b3',
-						'text': leaderboardMessage,
-						'mrkdwn_in': ['text', 'pretext']
-					}
-				]
-			}
+			'attachments': [
+				{
+					// 'title': 'Players:',
+					'pretext': '*All Time Leaders* :trophy:\n',
+					'color': '#0086b3',
+					'text': leaderboardMessage,
+					'mrkdwn_in': ['text', 'pretext']
+				}
+			]
 		});
+
 	});
 
 });
