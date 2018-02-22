@@ -383,18 +383,28 @@ function postQuestionResults(correctAnswer) {
 			text: `CONGRATULATIONS  ${winners.join(', ')}! :party-wizard:`
 		});
 
-		getLeaderboad(function(leaders) {
-			var leaderboardMessage = '*All Time Leaders*\n';
-			leaders.forEach(leader => {
-				leaderboardMessage += `${leader.name} - ${leader.score} wins\n`;
-			});
-
-			console.log(leaderboardMessage);
-			sendMessageToSlack(webhookURL, {
-				text: leaderboardMessage
-			});
-		});
 	}
 	
 }
+
+
+
+app.post('/leaderboard', urlencodedParser, checkAdmin, function(req, res) {
+
+	console.log('/leaderboard');
+	res.status(200).end();
+
+	getLeaderboad(function(leaders) {
+		var leaderboardMessage = '*All Time Leaders*\n';
+		leaders.forEach(leader => {
+			leaderboardMessage += `${leader.name} - ${leader.score} wins\n`;
+		});
+
+		console.log(leaderboardMessage);
+		sendMessageToSlack(webhookURL, {
+			text: leaderboardMessage
+		});
+	});
+
+});
 
