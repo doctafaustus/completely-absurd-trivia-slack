@@ -28,7 +28,7 @@ function updateLeaderboard(winners, cb) {
 	  function workingWithCells(step) {
 	    sheet.getCells({
 	      'min-row': 1,
-	      'max-row': 10,
+	      'max-row': 100,
 	      'min-col': 1,
 	      'max-col': 2,
 	      'return-empty': true
@@ -77,7 +77,7 @@ function updateLeaderboard(winners, cb) {
 	          winsCell.save();
 	        });
 	      }
-	      
+
 
 	      cb();
 
