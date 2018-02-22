@@ -1,6 +1,7 @@
 var express = require('express');
 var request = require('request');
 var bodyParser = require('body-parser');
+var getLeaderboad = require('./get-leaderboard');
 
 
 var app = express();
@@ -23,20 +24,9 @@ var prodRealURL = 'https://hooks.slack.com/services/T02A4DYBJ/B7WHHJC05/2lPlwdnh
 
 
 
-var webhookURL = prodRealURL;
+var webhookURL = prodSecretURL;
 
 var questions = require('./questions/question-set-joshj');
-
-
-// Trivia database API
-// $.ajax({
-// 	type: 'GET',
-// 	url: 'https://opentdb.com/api.php?amount=10',
-// 	success(data) {
-// 		console.log(data);
-// 	}
-// })
-
 
 
 class Game {
@@ -363,11 +353,23 @@ function postQuestionResults(correctAnswer) {
 		user.answerName = 'no answer';
 	});
 
-
 	if (!gameEnded) {
 		setTimeout(sendQuestion, 8000);
 	} else {
 		game.gameEnded = true;
+
+		getLeaderboad(function(leaders) {
+			var leaderboardMessage = '*LEADERBOARD*\n';
+			leaders.forEach(leader => {
+				leaderboardMessage += `${leader.name} - ${leader.score} wins\n`;
+			});
+
+			console.log(leaderboardMessage);
+			sendMessageToSlack(webhookURL, {
+				test: leaderboardMessage
+			});
+		});
 	}
 	
 }
+
