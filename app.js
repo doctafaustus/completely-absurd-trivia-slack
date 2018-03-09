@@ -79,7 +79,7 @@ app.post('/new-trivia-game', urlencodedParser, checkAdmin, function(req, res) {
 	var message = {
 		'attachments': [
 	    {
-				'text': `A new game has been created! (#${game.gameNum})\nWho would like to play?`,
+				'text': `@here A new game has been created! (#${game.gameNum})\nWho would like to play?`,
 				'callback_id': 'join_game',
 				'color': '#2ea664',
 				'attachment_type': 'default',
