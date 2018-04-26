@@ -29,7 +29,7 @@ var prodRealURL = 'https://hooks.slack.com/services/T02A4DYBJ/B7WHHJC05/2lPlwdnh
 
 var webhookURL = prodRealURL;
 
-var questions = require('./questions/question-set-27');
+var questions = require('./questions/question-set-dante3');
 
 
 class Game {
@@ -79,7 +79,7 @@ app.post('/new-trivia-game', urlencodedParser, checkAdmin, function(req, res) {
 	var message = {
 		'attachments': [
 	    {
-				'text': `@here A new game has been created! (#${game.gameNum})\nWho would like to play?`,
+				'text': `A new game has been created! (#${game.gameNum})\nWho would like to play?`,
 				'callback_id': 'join_game',
 				'color': '#2ea664',
 				'attachment_type': 'default',
