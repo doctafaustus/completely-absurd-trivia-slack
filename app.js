@@ -27,15 +27,15 @@ var prodRealURL = 'https://hooks.slack.com/services/T02A4DYBJ/B7WHHJC05/2lPlwdnh
 
 
 
-var webhookURL = prodRealURL;
+var webhookURL = prodSecretURL;
 
-var questions = require('./questions/question-set-james-spelling');
+var questions = require('./questions/question-set-who-am-i-1');
 
 
 
 class Game {
 	constructor() {
-		this.gameNum = Math.random().toString().substr(-6);
+		this.gameNum = Math.random().toString().substr(-5);
 		this.users = [];
 		this.currentQuestion = 0;
 		this.stopped = false;
