@@ -436,9 +436,9 @@ app.post('/announce', urlencodedParser, checkAdmin, function(req, res) {
 	sendMessageToSlack(webhookURL, {
 		'attachments': [
 			{
-				'pretext': '@here :megaphone: *Game Alert*:siren:\n',
+				'pretext': '@channel :megaphone: *Game Alert*:siren:\n',
 				'color': '#f24308',
-				'text': req.body.text,
+				'text': req.body.text.split('\n').join('\n'),
 				'mrkdwn_in': ['text', 'pretext']
 			}
 		]
