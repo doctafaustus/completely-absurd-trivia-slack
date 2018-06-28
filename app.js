@@ -428,3 +428,8 @@ app.post('/leaderboard', urlencodedParser, checkAdmin, function(req, res) {
 
 
 
+app.post('/announce', urlencodedParser, checkAdmin, function(req, res) {
+	console.log('/announce');
+	console.log(req.body);
+	res.status(200).end();
+});
