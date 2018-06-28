@@ -432,7 +432,7 @@ app.post('/announce', urlencodedParser, checkAdmin, function(req, res) {
 	console.log('/announce');
 	res.status(200).end();
 
-	var formattedMessage = req.body.text.split('\n').join('\n');
+	var formattedMessage = req.body.text.split('+').join('\n');
 	console.log('formattedMessage', formattedMessage);
 
 	sendMessageToSlack(webhookURL, {
