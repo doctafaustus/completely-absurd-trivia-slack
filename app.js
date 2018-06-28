@@ -435,7 +435,8 @@ app.post('/announce', urlencodedParser, checkAdmin, function(req, res) {
 	var splitMessage = req.body.text.split('+');
 	var formattedMessage;
 	splitMessage.forEach(item => {
-		formattedMessage += `${item}\n`;
+		console.log('item', item);
+		formattedMessage += `${item.trim()}\n`;
 	});
 
 
@@ -444,7 +445,7 @@ app.post('/announce', urlencodedParser, checkAdmin, function(req, res) {
 	sendMessageToSlack(webhookURL, {
 		'attachments': [
 			{
-				'pretext': '@channel :megaphone: *Game Alert*:siren:\n',
+				'pretext': '<!channel> :megaphone: *Game Alert*:siren:\n',
 				'color': '#f24308',
 				'text': formattedMessage,
 				'mrkdwn_in': ['text', 'pretext']
