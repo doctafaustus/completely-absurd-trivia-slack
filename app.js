@@ -449,3 +449,19 @@ app.post('/alert', urlencodedParser, checkAdmin, function(req, res) {
 		]
 	});
 });
+
+app.post('/broadcast', urlencodedParser, checkAdmin, function(req, res) {
+	console.log('/broadcast');
+	res.status(200).end();
+
+	sendMessageToSlack(webhookURL, {
+		'attachments': [
+			{
+				'pretext': req.body.text,
+				'color': '#e20ec7',
+				// 'text': formattedMessage,
+				// 'mrkdwn_in': ['text', 'pretext']
+			}
+		]
+	});
+});
