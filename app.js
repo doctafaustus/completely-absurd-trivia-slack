@@ -430,15 +430,17 @@ app.post('/leaderboard', urlencodedParser, checkAdmin, function(req, res) {
 
 app.post('/announce', urlencodedParser, checkAdmin, function(req, res) {
 	console.log('/announce');
-	console.log(req.body.text);
 	res.status(200).end();
+
+	var formattedMessage = req.body.text.split('\n').join('\n');
+	console.log('formattedMessage', formattedMessage);
 
 	sendMessageToSlack(webhookURL, {
 		'attachments': [
 			{
 				'pretext': '@channel :megaphone: *Game Alert*:siren:\n',
 				'color': '#f24308',
-				'text': req.body.text.split('\n').join('\n'),
+				'text': formattedMessage,
 				'mrkdwn_in': ['text', 'pretext']
 			}
 		]
