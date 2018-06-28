@@ -433,7 +433,7 @@ app.post('/announce', urlencodedParser, checkAdmin, function(req, res) {
 	res.status(200).end();
 
 	var splitMessage = req.body.text.split('+');
-	var formattedMessage;
+	var formattedMessage = '';
 	splitMessage.forEach(item => {
 		console.log('item', item);
 		formattedMessage += `${item.trim()}\n`;
