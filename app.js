@@ -27,7 +27,7 @@ var prodRealURL = 'https://hooks.slack.com/services/T02A4DYBJ/B7WHHJC05/2lPlwdnh
 
 
 
-var webhookURL = prodRealURL;
+var webhookURL = prodSecretURL;
 
 var questions = require('./questions/question-set-worst-jobs-1');
 
@@ -428,8 +428,8 @@ app.post('/leaderboard', urlencodedParser, checkAdmin, function(req, res) {
 
 
 
-app.post('/announce', urlencodedParser, checkAdmin, function(req, res) {
-	console.log('/announce');
+app.post('/alert', urlencodedParser, checkAdmin, function(req, res) {
+	console.log('/alert');
 	res.status(200).end();
 
 	var splitMessage = req.body.text.split('+');
