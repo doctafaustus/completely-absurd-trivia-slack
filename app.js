@@ -27,7 +27,7 @@ var prodRealURL = 'https://hooks.slack.com/services/T02A4DYBJ/B7WHHJC05/2lPlwdnh
 
 
 
-var webhookURL = prodRealURL;
+var webhookURL = prodSecretURL;
 
 var questions = require('./questions/question-set-worst-jobs-1');
 
@@ -430,6 +430,17 @@ app.post('/leaderboard', urlencodedParser, checkAdmin, function(req, res) {
 
 app.post('/announce', urlencodedParser, checkAdmin, function(req, res) {
 	console.log('/announce');
-	console.log(req.body);
+	console.log(req.body.text);
 	res.status(200).end();
+
+	sendMessageToSlack(webhookURL, {
+		'attachments': [
+			{
+				'pretext': '@here :megaphone: *Game Alert*:siren:\n',
+				'color': '#f24308',
+				'text': req.body.text,
+				'mrkdwn_in': ['text', 'pretext']
+			}
+		]
+	});
 });
