@@ -36,7 +36,7 @@ module.exports = [
     a: 'Tom',
     b: 'Brandon',
     c: 'Jeff',
-    d: 'ChelsB'
+    d: 'ChelsB',
     answer: 'b'
   },
   {
