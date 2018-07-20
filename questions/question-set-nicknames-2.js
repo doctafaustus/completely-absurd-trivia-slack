@@ -64,12 +64,12 @@ module.exports = [
     answer: 'b'
   },
   {
-    question: 'Which nickname does Ryan Abelman NOT go by?', 
-    a: 'Rez',
-    b: 'Buckeye',
-    c: 'Paminto',
+    question: 'What is Jeff\'s nickname?', 
+    a: 'Latex Layton',
+    b: 'Dr. Boozey',
+    c: 'Yo Yo Mah',
     d: 'None of the Above',
-    answer: 'd'
+    answer: 'b'
   },
   {
     question: 'Who has the childhood nickname Motts?', 
