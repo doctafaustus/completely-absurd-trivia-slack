@@ -1,6 +1,5 @@
 module.exports = [
   {
-<<<<<<< HEAD
     question: 'What is Weird Al Yankovic\'s first name?', 
     a: 'Weird',
     b: 'Jebediah',
