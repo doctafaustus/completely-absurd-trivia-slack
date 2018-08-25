@@ -1,5 +1,6 @@
 module.exports = [
   {
+<<<<<<< HEAD
     question: 'What is Weird Al Yankovic\'s first name?', 
     a: 'Weird',
     b: 'Jebediah',
@@ -78,5 +79,5 @@ module.exports = [
     c: 'Abu',
     d: 'Abdul',
     answer: 'c'
-  },
+  }
 ];
