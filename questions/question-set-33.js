@@ -56,7 +56,7 @@ module.exports = [
     answer: 'd'
   },
   {
-    question: 'What type of cloud produces precipitation in the form of rain, snow or hail?', 
+    question: 'What type of cloud produces precipitation in the form of rain, snow, or hail?', 
     a: 'Cumulus',
     b: 'Nimbus',
     c: 'Stratus',
