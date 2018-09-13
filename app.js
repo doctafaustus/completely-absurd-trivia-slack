@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 
 var getLeaderboad = require('./get-leaderboard');
 var updateLeaderboard = require('./update-leaderboard');
+var openers = require('./openers');
 
 
 var app = express();
@@ -27,7 +28,7 @@ var prodRealURL = 'https://hooks.slack.com/services/T02A4DYBJ/B7WHHJC05/2lPlwdnh
 
 
 
-var webhookURL = prodRealURL;
+var webhookURL = prodSecretURL;
 
 var questions = require('./questions/question-set-32.js');
 
@@ -160,8 +161,14 @@ app.post('/actions', urlencodedParser, function(req, res) {
   		return console.log('User already registered')
   	}
 
+    var opener = 'is in!';
+    if (opener.length) {
+      var randomIndex = Math.floor(Math.random() * openers.length);
+      opener = openers.splice(randomIndex, 1);
+    }
+
   	var message = {
-  		text: `_${actionJSONPayload.user.name} is in!_`
+  		text: `_${actionJSONPayload.user.name} ${opener}_`
   	};
   	registerUser(actionJSONPayload.user.name);
   	console.log(game);
