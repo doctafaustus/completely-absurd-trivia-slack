@@ -157,9 +157,9 @@ app.post('/actions', urlencodedParser, function(req, res) {
 
   if (actionJSONPayload.callback_id === 'join_game') {
 
-  	// if (getUser(actionJSONPayload.user.name)) {
-  	// 	return console.log('User already registered')
-  	// }
+  	if (getUser(actionJSONPayload.user.name)) {
+  		return console.log('User already registered')
+  	}
 
     var opener = 'is in!';
     if (openers.length) {
