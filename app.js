@@ -162,7 +162,7 @@ app.post('/actions', urlencodedParser, function(req, res) {
   	}
 
     var opener = 'is in!';
-    if (opener.length) {
+    if (openers.length) {
       var randomIndex = Math.floor(Math.random() * openers.length);
       opener = openers.splice(randomIndex, 1);
     }
