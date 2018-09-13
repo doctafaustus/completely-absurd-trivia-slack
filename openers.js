@@ -1,7 +1,10 @@
 var openers = [
-  'is about to go Loconut',
-  'is feeling fine and dandy like sour candy',
-  'just smacked everyone\'s butt with a yard o\' beef',
+  'is so in',
+  'is very much in',
+  'might be in'
+  // 'is about to go Loconut',
+  // 'is feeling fine and dandy like sour candy',
+  // 'just smacked everyone\'s butt with a yard o\' beef',
   // 'is definitely not the Tangerine Bandit',
   // 'might secretly enjoy Lifehouse',
   // 'is fat-cattin\' all day, every day',
