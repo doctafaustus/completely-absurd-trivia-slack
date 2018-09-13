@@ -45,3 +45,6 @@ var openers = [
   // 'is wearing a bathrobe stolen from the Knight\'s Inn',
   // 'doesn\'t wear pants when WFH',
 ];
+
+
+module.exports = openers;
