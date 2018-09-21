@@ -24,11 +24,11 @@ module.exports = [
     answer: 'a'
   },
   {
-    question: 'Which is not the name of an English county?', 
-    a: 'Lancashire',
-    b: 'Leicestershire',
-    c: 'Liverpoolshire',
-    d: 'Lincolnshire',
+    question: 'Which group of Native American people primarily reside in the Southwestern United States?', 
+    a: 'Sioux',
+    b: 'Cherokee',
+    c: 'Navajo',
+    d: 'Shoshone',
     answer: 'c'
   },
   {
