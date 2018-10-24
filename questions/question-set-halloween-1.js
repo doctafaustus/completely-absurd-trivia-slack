@@ -1,11 +1,11 @@
 module.exports = [
   {
     question: 'Which of the following is NOT an effective way to kill a vampire?', 
-    a: 'Suffocation',
+    a: 'Burning',
     b: 'Holy Water',
     c: 'Sunlight',
-    d: 'Silver Bullet',
-    answer: 'a'
+    d: 'Suffocation',
+    answer: 'd'
   },
   {
     question: 'Which actor was famous for playing the part of Doctor Van Helsing?', 
