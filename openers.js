@@ -46,7 +46,7 @@
 
 var openers = [
   'is trapped in R. Kelly\'s closet',
-  'is suspicoulsy never seen during the day and is allergic to garlic',
+  'is suspiciously never seen during the day and is allergic to garlic',
   'is hosting a BYOB seance later tonight',
   'was bobbing for apples but bit something that wasn\'t an apple',
   'put some unsavory things in the Halloween feel box',
@@ -55,7 +55,6 @@ var openers = [
   'egged the parking lot security guard',
   'is being a dick and giving children toothbrushes for treats this year',
   'is demanding "tricks" instead of treats from visitors and it\'s weird',
-
   'still has nightmares about deving that one page checkout',
   'toilet papered Home Away\'s office',
   'is A/B testing which blood type tastes better',
@@ -64,9 +63,8 @@ var openers = [
   'needs to wrap this up and get back to exorcisms',
   'is WFGraveyard',
   'keeps doing the Thriller dance and it has to stop',
-  'buying their kid a lovely doll named "Chucky" on AG',
+  'is buying their kid a lovely doll named "Chucky" on AG',
   'is refusing to put the lotion in the basket',
-
   'wants BRAAAIINS but will settle for expired lunchmeat',
   'didn\'t realize just how much rum was in the hot apple cider',
   'got lost on the ghost tour and we\'re not going to backtrack now',
@@ -78,12 +76,18 @@ var openers = [
   'prepicked cheap pumpkins at Walmart and swapped them at the patch behind their kid\'s backs',
   'fell into a 5-year sugar coma',
   'is serving some strange-tasting meat at their Halloween party',
-
   'has been listening to a little too much Rob Zombie lately',
   'spiked the vampire\'s blood punch with Loconut (the bad melon kind)',
   'is dressing up as a sexy DDR this year',
-
-
+  'didn\'t get ghoulie and now has to get out',
+  'is dressing up as :paden: for halloween',
+  'is butt naked, howling at the moon',
+  'is handing out candy to children from the back of their van',
+  'is changing their pants after seeing a :ghost:',
+  'just saw a black cat but wished it was a :fat-cat:',
+  'crossed the road to get to the other Hyde',
+  'is just here for the boos',
+  'is "something about kissing a vampire and it being a pain in the neck" -Cara',
 ];
 
 

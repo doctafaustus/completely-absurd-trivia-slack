@@ -16,11 +16,11 @@ module.exports = [
     answer: 'b'
   },
   {
-    question: 'Who is the main antagonist of the movie Ghostbusters?', 
+    question: 'Who was the main antagonist of the movie Ghostbusters?', 
     a: 'Ghostface Killer',
     b: 'Gozer',
     c: 'Slimer',
-    d: 'The Nightmare Before Christmas',
+    d: 'Oogie Boogie',
     answer: 'b'
   },
   {
@@ -42,13 +42,13 @@ module.exports = [
   {
     question: 'Historically, during a bobbing for apples game, the first person to bite an apple would be next to ____', 
     a: 'Get Married',
-    b: 'Be Sacrified',
+    b: 'Be Sacrificed',
     c: 'Get Rich',
     d: 'Have Children',
     answer: 'a'
   },
   {
-    question: 'What is the first name of Dr. Frankenstein?', 
+    question: 'What was the first name of Dr. Frankenstein?', 
     a: 'Johann',
     b: 'Victor',
     c: 'Henry',
@@ -56,7 +56,7 @@ module.exports = [
     answer: 'b'
   },
   {
-    question: 'Who portrayed the iconic SNL character David S. Pumpkins', 
+    question: 'Who portrayed the iconic SNL character David S. Pumpkins?', 
     a: 'Bobby Moynihan',
     b: 'Tim Allen',
     c: 'Jimmy Fallon',
@@ -64,7 +64,7 @@ module.exports = [
     answer: 'd'
   },
   {
-    question: 'Who was the Michael Meyers mask originally a mask of?', 
+    question: 'Who was the Michael Meyers mask originally modeled after?', 
     a: 'Richard Nixon',
     b: 'Leonard Nimoy',
     c: 'William Shatner',

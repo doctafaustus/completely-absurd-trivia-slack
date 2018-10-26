@@ -25,7 +25,7 @@ module.exports = [
   },
   {
     question: 'Which of following is NOT one of the seven "Princes of Hell" nor associated with any of the seven deadly sins?', 
-    a: 'Lucifier',
+    a: 'Lucifer',
     b: 'Leviathan',
     c: 'Beelzebub',
     d: 'Kali',
@@ -40,7 +40,7 @@ module.exports = [
     answer: 'a'
   },
   {
-    question: 'What is the most well known treatise on witchcraft?', 
+    question: 'What is the famous treatise on witchcraft called?', 
     a: 'The Confession of Ellemar',
     b: 'From the Far Reaches of Hell',
     c: 'Malleus Maleficarum',
@@ -48,7 +48,7 @@ module.exports = [
     answer: 'c'
   },
   {
-    question: 'Gargoyles were used to frighten intruders from the buildings they guard, but they also served as what?', 
+    question: 'Gargoyles were used to frighten intruders from the buildings they guarded, but they also served as what?', 
     a: 'Rainspouts',
     b: 'Chimneys',
     c: 'Lanterns',
