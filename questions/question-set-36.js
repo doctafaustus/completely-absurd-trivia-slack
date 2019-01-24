@@ -1,6 +1,6 @@
 module.exports = [
   {
-    question: 'Which branch of the U.S. Armed Forces operates under the Department of Homeland Security during peacetime?', 
+    question: 'Which branch of the Armed Forces operates under the Department of Homeland Security during peacetime?', 
     a: 'Coast Guard',
     b: 'National Guard',
     c: 'Navy',
@@ -40,12 +40,12 @@ module.exports = [
     answer: 'b'
   },
   {
-    question: 'Which band wrote the popular stadium anthem-like song "The Final Countdown"?', 
+    question: 'Which Rock band wrote the 1990 hit song "Cherry Pie"?', 
     a: 'Van Halen',
-    b: 'Bon Jovi',
+    b: 'Def Leppard',
     c: 'Scorpions',
-    d: 'Europe',
-    answer: 'a'
+    d: 'Warrant',
+    answer: 'd'
   },
   {
     question: 'Who was first American astronaut to travel into space?', 
@@ -73,7 +73,7 @@ module.exports = [
   },
   {
     question: 'Yahoo, LinkedIn, and NetApp are all headquartered where?', 
-    a: 'San Francisco, CA',
+    a: 'Chicago, IL',
     b: 'Sunnyvale, CA',
     c: 'Palo Alto, CA',
     d: 'Redmond, WA',
