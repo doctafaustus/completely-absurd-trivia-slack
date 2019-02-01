@@ -72,7 +72,7 @@ module.exports = [
     answer: 'a'
   },
   {
-    question: 'In the e=mc2 equation, C stands for "Constant", which is what?'
+    question: 'In the e=mc2 equation, C stands for "Constant", which is what?',
     a: 'Earth\'s gravity',
     b: 'The speed of light',
     c: 'rate of universal expansion',

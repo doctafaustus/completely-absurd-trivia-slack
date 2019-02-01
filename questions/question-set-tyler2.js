@@ -72,7 +72,7 @@ module.exports = [
     answer: 'c'
   },
   {
-    question: "Who is Troy's hero?"
+    question: "Who is Troy's hero?",
     a: 'Carl Weathers',
     b: 'Ernie Hudson',
     c: 'Mekhi Phifer',
