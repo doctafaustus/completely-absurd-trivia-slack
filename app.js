@@ -21,6 +21,10 @@ app.get('/', function(req, res){
   res.sendStatus(200);
 });
 
+app.get('/entry-form', (req, res) => {
+	res.sendFile('views/entry-form.html', {root: __dirname })
+});
+
 
 var devURL = 'https://hooks.slack.com/services/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';
 var prodSecretURL = 'https://hooks.slack.com/services/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';
@@ -30,7 +34,7 @@ var prodRealURL = 'https://hooks.slack.com/services/T02A4DYBJ/B7WHHJC05/2lPlwdnh
 
 var webhookURL = prodRealURL;
 
-var questions = require('./questions/question-set-james2.js');
+var questions = require('./questions/question-set-adam3.js');
 
 
 

@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>Completely Absurd Trivia Question Entry</title>
+    <style>
+      #name-entry {
+        margin-bottom: 20px;
+      }
+      ul {
+        list-style-type: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Completely Absurd Trivia Question Entry</h1>
+    <form id="question-entry">
+
+      <div id="name-entry">
+        <span class="input-title">You Name:</span>
+        <input id="your-name" type="text">
+      </div>
+
+      <span class="input-title">Question 1</span>
+      <input class="question-input" type="text">
+      <ul class="answer-list">
+        <li>
+          <span>a</span>
+          <input class="answer-a" type="text">
+        </li>
+        <li>
+          <span>b</span>
+          <input class="answer-b" type="text">
+        </li>
+        <li>
+          <span>c</span>
+          <input class="answer-c" type="text">
+        </li>
+        <li>
+          <span>d</span>
+          <input class="answer-d" type="text">
+        </li>
+      </ul>
+
+      <ul class="answer-selection">
+        <div class="answer-title">Answer:</div>
+        <li>
+          <input type="radio" name="q1-answer" value="a">
+          <span class="radio-label">a</span>
+        </li>
+        <li>
+          <input type="radio" name="q1-answer" value="b">
+          <span class="radio-label">b</span>
+        </li>
+        <li>
+          <input type="radio" name="q1-answer" value="c">
+          <span class="radio-label">c</span>
+        </li>
+        <li>
+          <input type="radio" name="q1-answer" value="d">
+          <span class="radio-label">d</span>
+        </li>
+      </ul>
+
+
+    </form>
+  </body>
+</html>
