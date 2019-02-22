@@ -1,4 +1,4 @@
-odule.exports = [
+module.exports = [
   {
     question: 'Who was the last emperor of the Western Roman Empire?',
     a: 'Augustulus',
