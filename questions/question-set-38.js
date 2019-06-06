@@ -32,7 +32,7 @@ module.exports = [
     answer: 'a'
   },
   {
-    question: 'What company makes Oeros?', 
+    question: 'What company makes Oreos?', 
     a: 'General Mills',
     b: 'Nabisco',
     c: 'Nestle',
@@ -40,43 +40,43 @@ module.exports = [
     answer: 'b'
   },
   {
-    question: '', 
-    a: '',
-    b: '',
-    c: '',
-    d: '',
-    answer: ''
+    question: 'Who composed "The Nutcracker"?', 
+    a: 'Handel',
+    b: 'Beethoven',
+    c: 'Mozart',
+    d: 'Tchaikovsky',
+    answer: 'd'
   },
   {
-    question: '', 
-    a: '',
-    b: '',
-    c: '',
-    d: '',
-    answer: ''
+    question: 'The pH of pure water is approximately:', 
+    a: '2',
+    b: '4',
+    c: '7',
+    d: '10',
+    answer: 'c'
   },
   {
-    question: '', 
-    a: '',
-    b: '',
-    c: '',
-    d: '',
-    answer: ''
+    question: 'Which company was Elon Musk never involed in?', 
+    a: 'Solar City',
+    b: 'The Boring Company',
+    c: 'PayPal',
+    d: 'Tumblr',
+    answer: 'd'
   },
   {
-    question: '', 
-    a: '',
-    b: '',
-    c: '',
-    d: '',
-    answer: ''
+    question: 'What sushi does not contain any seafood?', 
+    a: 'Unagi',
+    b: 'Dragon Roll',
+    c: 'California Roll',
+    d: 'Tiger Roll',
+    answer: 'c'
   },
   {
-    question: '', 
-    a: '',
-    b: '',
-    c: '',
-    d: '',
-    answer: ''
+    question: 'What liquid is found in most cigarette lighters?', 
+    a: 'Butane',
+    b: 'Gasoline',
+    c: 'Kerosene',
+    d: 'Propane',
+    answer: 'a'
   },
 ];
