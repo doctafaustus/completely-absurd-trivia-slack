@@ -32,7 +32,7 @@ var prodRealURL = process.env.prodRealURL;
 
 
 
-var webhookURL = prodRealURL;
+var webhookURL = prodSecretURL;
 
 var questions = require('./questions/question-set-joshp2.js');
 
