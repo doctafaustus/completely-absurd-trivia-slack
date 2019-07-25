@@ -1,44 +1,47 @@
-var express = require('express');
-var request = require('request');
-var bodyParser = require('body-parser');
+// Core modules
+const express = require('express');
+const request = require('request');
+const bodyParser = require('body-parser');
 
+// Custom modules
+const getLeaderboad = require('./get-leaderboard');
+const updateLeaderboard = require('./update-leaderboard');
+const openers = require('./openers');
 
-var getLeaderboad = require('./get-leaderboard');
-var updateLeaderboard = require('./update-leaderboard');
-var openers = require('./openers');
-
-
-var app = express();
+// Server setup
+const app = express();
 app.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }));
 app.use(bodyParser.json({limit: '1mb'}));
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 
+// Define webhook URLs for local slack, #sectret-triva, and #triv-neutrality
+const devURL = process.env.devURL;
+const prodSecretURL = process.env.prodSecretURL;
+const prodRealURL = process.env.prodRealURL;
+
+// Set webhook to use
+const webhookURL = prodSecretURL;
+
+// Set question set
+const questions = require('./questions/question-set-joshp2.js');
+
+
+// Test route to ping Heroku server
 app.get('/', function(req, res){
   console.log('test!');
   res.sendStatus(200);
 });
 
+// WIP entry form
 app.get('/entry-form', (req, res) => {
 	res.sendFile('views/entry-form.html', {root: __dirname })
 });
 
 
-var devURL = process.env.devURL;
-var prodSecretURL = process.env.prodSecretURL;
-var prodRealURL = process.env.prodRealURL;
-
-
-
-var webhookURL = prodSecretURL;
-
-var questions = require('./questions/question-set-joshp2.js');
-
-
-
-
+// Define new game object
 class Game {
 	constructor() {
 		this.gameNum = Math.random().toString().substr(-5);
@@ -48,7 +51,7 @@ class Game {
 	}
 }
 
-
+// Define new user object
 class User {
 	constructor(user) {
 		this.name = user;
@@ -61,7 +64,6 @@ class User {
 
 
 let game;
-
 
 function checkAdmin(req, res, next) {
 	if (req.body.user_name.indexOf('bill') === -1) {

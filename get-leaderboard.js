@@ -1,5 +1,7 @@
 var async = require('async');
 var GoogleSpreadsheet = require('google-spreadsheet');
+
+// Link to leaderboard spreadsheet: https://docs.google.com/spreadsheets/d/117yGWvkjZvngoFtzwwHpqOqwY9IyFnbbMtaB8gBm5w8/edit#gid=0
 var doc = new GoogleSpreadsheet('1zaVNGbEm3Tma4c-IxGOUa687Gpuw3sKXYXW4-6IEAOA');
 var sheet;
 
