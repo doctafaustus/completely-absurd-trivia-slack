@@ -78,5 +78,5 @@ module.exports = [
     c: 'Brooklyn NY',
     d: 'Atlanta GA',
     answer: 'b'
-  },
+  }
 ];
