@@ -32,7 +32,7 @@ var prodRealURL = process.env.prodRealURL;
 
 
 
-var webhookURL = prodSecretURL;
+var webhookURL = prodRealURL;
 
 var questions = require('./questions/question-set-45.js');
 
@@ -462,8 +462,8 @@ app.post('/alert', urlencodedParser, checkAdmin, function(req, res) {
 	});
 });
 
-app.post('/broadcast', urlencodedParser, checkAdmin, function(req, res) {
-	console.log('/broadcast');
+app.post('/game-broadcast', urlencodedParser, checkAdmin, function(req, res) {
+	console.log('/game-broadcast');
 	res.status(200).end();
 
 	sendMessageToSlack(webhookURL, {
